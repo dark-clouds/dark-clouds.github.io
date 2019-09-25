@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>科创IIB46组报告</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<link rel="stylesheet" href="css/styles-merged.css">
+<link rel="stylesheet" href="css/style.min.css">
+<link rel="stylesheet" href="fonts/icomoon/style.css">
+
+<!--[if lt IE 9]>
+  <script src="js/vendor/html5shiv.min.js"></script>
+  <script src="js/vendor/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default probootstrap-navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html" title="uiCookies:Frame">Frame</a>
+            </div>
+
+            <div id="navbar-collapse" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#" data-nav-section="home">Home</a></li>
+                    <li><a href="#" data-nav-section="features">项目概况</a></li>
+                    <li><a href="#" data-nav-section="pricing">硬件部分</a></li>
+                    <li><a href="#" data-nav-section="reviews">软件部分</a></li>
+                    <li><a href="#" data-nav-section="ceshi">系统测试情况</a></li>
+                    <li><a href="#" data-nav-section="luxiang">演示录像</a></li>
+                    <li><a href="#" data-nav-section="gaijin">改进方向</a></li>
+                    <li><a href="#" data-nav-section="chengyuan">项目成员及感受</a></li>
+                    <li><a href="#" data-nav-section="zhixie">致谢</a></li>
+                    <li><a href="#" data-nav-section="fulu">附录</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END section -->
+    <!-- 标题-->
+    <section class="probootstrap-hero prohttp://localhost/probootstrap/frame/#featuresbootstrap-slant" style="background-image: url(img/tou.jpg);" data-section="home" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row intro-text">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="probootstrap-heading probootstrap-animate">上海交通大学</h1>
+                    <h1 class="probootstrap-heading probootstrap-animate">工程实践与科技创新II-B课程</h1>
+                    <h1 class="probootstrap-heading probootstrap-animate">——<em>46组</em>小车寻轨项目总结</h1>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END section -->
+    <!-- 项目概况-->
+    <section class="probootstrap-section probootstrap-bg-light" id="features" data-section="features">
+        <div class="container">
+            <div class="row text-center mb100">
+                <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                    <h2 class="mb30 text-black probootstrap-heading">项目概况</h2>
+                    <p>
+                        本报告是上海交通大学工程实践与科技创新II-B课程的总结，介绍了系统组成，蓝牙模块使用，硬件嵌入式开发，基于APPINVENTOR的APP开发，以及图像识别和寻迹算法等，优化方法等方面的知识。
+                        本报告旨在向读者全面介绍项目的原理和实现方法，用以总结工作和累积经验，并供指导老师检查及其他同学参考。本报告的适读对象为电子设计爱好者、对嵌入式开发有兴趣的同学和审阅的指导老师。
+                    </p>
+                </div>
+            </div>
+            <!-- END row -->
+            <div class="row mb100">
+                <div class="col-md-8 col-md-pull-2 probootstrap-animate">
+                    <p><img src="img/kaishi.png" alt="" class="img-responsive probootstrap-shadow"></p>
+                </div>
+                <div class="col-md-4 col-md-pull-1 probootstrap-section-heading">
+                    <h3 class="text-primary probootstrap-heading-2">项目整体结构说明</h3>
+                    <p><p>系统先通过图像识别确认地图的具体形状，接下来确定车的起点位置，目标是寻找轨迹线上的下一个特征点，经过寻迹算法发出相应的指令，HC-06蓝牙模块接收到信号后，单片机根据接受到的指令控制电机转动方向和转动速度，来实现车辆的移动，以此为一次运动的基本单元，周而复始，车辆到达终点，并回到起点。系统流程图如图所示。</p></p>
+                    <ul class="probootstrap-list">
+                        <!-- <li class="probootstrap-check">Pointing has no control</li>
+                         <li class="probootstrap-check">A small river named Duden flows</li>
+                         <li class="probootstrap-check">Roasted parts of sentences fly into your mouth</li>-->
+                    </ul>
+                </div>
+            </div>
+            <!-- END row -->
+        </div>
+    </section>
+    <!-- END section -->
+    <!--硬件部分-->
+    <section class="probootstrap-section" data-section="pricing">
+        <div class="container">
+            <div class="row text-center mb100">
+                <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                    <h2 class="mb30 text-black probootstrap-heading">硬件部分</h2>
+                    <p>
+                        硬件部分主要包括车辆结构及组成，车辆运动的嵌入式开发等与车辆实体直接相关的内容。
+                    </p>
+                </div>
+            </div>
+            <!-- END row -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="probootstrap-pricing">
+                        <h2><b>车辆结构及组成</b></h2>
+                        <br />
+                        <!-- <p class="probootstrap-price"><strong>车辆结构及组成</strong></p>-->
+                        <p align="left"><b>&bull; 单片机</b><br />单片机在现代化电子产品中的广泛应用是产品智能化的基础，MSP430因其为单片机开发与应用中的热点之一而备受电子爱好者的青睐。MSP430是一块基于开放原始代码的平台，由硬件(包括微处理器、电路板等)和软件(编程接口和语言)两部分组成，并且是开源的，便于应用和二次开发。MSP430编程语言是建立在 C/C++基础上的，它将一些相关参数设置模块化，支持多样的互动程序，使用户不需直接处理底层系统，提高了应用程序的开发效率。由于这些优点，MSP430单片机已被广泛应用众多领域。MSP430单片机的结构信息（引脚分布以及控制元件）如下图</p>
+
+                        <p><img src="img/danpianji.png" alt="" class="img-responsive probootstrap-shadow"></p>
+                        <p align="left"><b>&bull; HC-06 蓝牙模块</b><br />实物及原理图如下</p>
+
+                        <p><img src="img/lanya1.jpg" alt="" class="img-responsive probootstrap-shadow"></p>
+                        <p><img src="img/lanya2.png" alt="" class="img-responsive probootstrap-shadow"></p>
+
+
+                        <p align="left">
+                            RXD和TXD分别接单片机的RXD和TXD<br />
+                            接收数据 Receive(rx) Data<br />发送数据 Transmit(tx) Data
+                        </p>
+                        <p align="left">为保证小车性能我们对硬件进行如下改装：</p>
+
+                        <ul class="probootstrap-list text-left mb50">
+                            <li class="probootstrap-check">提升车辆抓地力。采用在车轮上放置适当双面胶的方法，在增加抓地力的基础上进一步的控制两个车轮能够对接收到的指令做出争取的动作。</li>
+                            <li class="probootstrap-check">提升车辆稳定性。采取增加车辆自重的方式，在提升车辆稳定性的同时进一步的增加压力进而增大摩擦力。</li>
+                            <li class="probootstrap-check">提升车辆持续工作能力。由于电池充电器损坏，为不耽误调试，我们将充电宝放置在车辆上，通过USB供电。</li>
+                        </ul>
+                        <!-- <p><a href="#" class="btn btn-black">Get Started</a></p>-->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="probootstrap-pricing probootstrap-popular probootstrap-shadow">
+                        <h2><b>车辆运动嵌入式开发</b></h2>
+                        <br />
+                        <p align="left"><b>&bull;基于平台 </b><br />此次课程项目采用的嵌入式开发软件是Energia。Energia是一个为德州仪器公司CC1310、CC3220、TivaC、CC3200、MSP432、MSP430等单片机开发的集成开发环境。该软件在不同操作系统中有良好的兼容性，在Windows，Mac?OS，Linux系统中均可使用。同时，Energia具有图形化编程的功能，便于使用者利用所提供的已有模块快速设计出原型程序。 </p>
+                        <p align="left"><b>&bull; 代码实现原理</b><br />程序包含两端函数,分别用来做初始化设定(setup)和循环操作 (loop)。在setup中，通过 Serial.begin(9600) 函数打开串口，并将数据传输速率设置为9600bps。通过pinMode()函数将9-13号引脚配置为输出模式。该小车用到的电机需要用PWM信号进行控制，每个电机对应两个引脚，当单片机给两个引脚中的一个引脚提供高电位时，电机开始转动，当两个引脚电位相同时，电机停止转动。Loop函数中包含了四个子函数，分别实现控制小车向左转、向右转、前进和停止的功能。在Loop函数的每一次循环中，通过Serial.read()函数读取串口指令，最后进行判断，执行不同的功能。在调试过程中我们发现，如果延时函数撰写不当，或者For循环嵌套过多或过分冗余，会导致车辆对指令做出迟钝的反应，从而在联合调制的时候，不能够对收到的指令做出实时调整和反馈。所以我们在撰写代码的时候，充分考虑到这个问题，在功能不变的基础上，将整个代码量下降，减少嵌套，合理设置延时，实现了车辆对指令的实时反应和调整。</p>
+
+                        <p align="left"><b>&bull; 串口调试</b><br />在整个项目之中，我们采用了基于XCOM和SerialPro两种串口调试工具进行串口调试，我们发现，在我们的电脑上，SerialPro的工作性能和兼容性更好。两种串口调试工具的软件操作页面如图所示：</p>
+                        <p><img src="img/chuankou1.png" alt="" class="img-responsive probootstrap-shadow"></p>
+                        <p><img src="img/chuankou2.png" alt="" class="img-responsive probootstrap-shadow"></p>
+                        <p align="left">在小组合作过程中，为负责硬件的同学能够单独对车辆运动嵌入式开发进行调试和参数选择，确认指令能够进入蓝牙模块，并且发送至单片机，单片机能够对收到的指令做出正确的反应和调整，我们采用了串口调试工具。但是在使用中我们发现，由于连接USB线的原因，只能观察车辆是否能够动起来，但是动的对不对，动的好不好都不能在黑色线上进行实际的测量和考评，于是我们撰写APP，相当于通过手机与车辆HC-06蓝牙模块的连接，实现另外一渠道对车辆进行调试。</p>
+
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="probootstrap-pricing">
+                        <!-- <h2>Premium</h2> -->
+                        <h2><b>基于安卓开发平台的特色调试</b></h2>
+                        <br />
+                        <p align="left"><b>&bull; 基于平台 </b><br />APP Inventor是Google针对Android平台，于2010年提出的以浏览器为基础的开发工具，开发者只要使用浏览器便能开发Android设备上的应用程序，开发者所设计的应用程序项目(Project)会放在云端储存起来。当进入开发页面后，就可以管理自己储存于云端的应用程序项目。Android与Google的应用已经完美无缝结合，渗透了互联网，因此APP Inventor很好地利用了Android开拓宽市场。当利用APP Inventor开发手机运用程序完成后，可以将其生成二维码，然后使用Android手机上的扫码工具扫描二维码下载完成之后，就可以使用这个APP Inventor开发的手机运用程序了，基于App Inventor这些方便且对于初学者友好的特性，并且具有丰富而直接的蓝牙通讯功能，我们采用了App Inventor作为安卓App的开发工具。</p>
+
+                        <p align="left"><b>&bull; 模块化开发</b><br />App的设计思路与程序结构也很简单，App的中心组件是蓝牙客户端，中心事件是手机蓝牙客户端与蓝牙模块的配对，在打开App时弹出对话框提示开发者，使用者根据提示点击“连接蓝牙设备”之后对蓝牙客户端进行初始化，并且搜索蓝牙设备，连接成功后提示“已连接蓝牙”，在使用者按下“Forward”按钮时发送字符‘a’，松开后发送‘e’，在使用者按下“Back”按钮时发送字符‘b’，松开后发送‘e’，在使用者按下“Left”按钮时发送字符‘d’，松开后发送‘e’，在使用者按下“Right”按钮时发送字符‘c’，松开后发送‘e’，在使用者按下“Stop”按钮时发送字符‘e’，在使用者按下“disconnect”后断开蓝牙连接。具体发送字符可根据调试需要以及最终发送指令的算法来指定。</p>
+                        <p align="left"><b>&bull; 手机APP</b><br />我们采用了App Inventor作为安卓App的开发工具，设计了我们的工科创II-B调试软件，软件背景是海天画面，界面上有BTlist，Forward，Back，Left，Right，Stop，Disconnect七个按钮，并且在连接蓝牙前后会有文字来提示现在是否连接上了目标单片机上的蓝牙模块，Forward，Back，Left，Right，Stop分别控制车辆的运动状态，界面简洁易懂，对于使用者友好，APP设计如图所示;</p>
+                        <p><img src="img/shouji.png" alt="" class="img-responsive probootstrap-shadow"></p>
+
+                        <!-- <p align="left"><b>&bull; </b><br/></p> -->
+
+                        <ul class="probootstrap-list text-left mb50">
+                            <li class="probootstrap-check">对硬件部分调试简洁，无需启动所有的图像识别和寻迹算法，节约时间，同时能够快速的发现车辆运动嵌入式开发算法的问题</li>
+                            <li class="probootstrap-check">为小组工作效率的提高做出贡献，提供了了硬件单独调试的可能。无需三人同时工作</li>
+                            <li class="probootstrap-check">学习了简单了基于APP Inventor做APP开发的方法</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END section -->
+    <!--软件部分-->
+    <section class="probootstrap-section probootstrap-bg-light" data-section="reviews">
+        <div class="container">
+            <div class="row text-center mb100">
+                <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                    <h2 class="mb30 text-black probootstrap-heading">软件部分</h2>
+                    <p>本项目使用Visual studio 2017 + openCV 3.4.1;在windows平台上进行调试，采用电脑内置摄像头拍摄。openCV 是功能强大的图像处理包，可配合VS使用，使得图像处理部分更加方便简洁；而3.4.1版本相较于旧版的2版本优化了保存图像的矩阵类，使使用者不再需要关注于图像的内存分配和销毁工作，可以专注于其功能的实现。软件部分主要包括图像处理，蓝牙串口通讯以及小车寻轨算法设计。</p>
+                    <br />
+                    <h3 class="text-primary probootstrap-heading-2">图像处理</h3>
+                    <p>图像处理主要包括静态路线识别和动态小车位置追踪等过程。其中静态路线识别主要包括图像获取、投射变换、二值化、细化、直线识别、路线（特征点）计算等过程。动态小车位置追踪主要包括图像获取及投射变换、颜色识别及色块追踪等过程。</p>
+                    <br><br><br>
+
+                    <h3>静态路线识别</h3>
+                    <p>在项目中我们采取静态路线设计，假定路线不再变化，设计了相对复杂，包含多处直角、钝角弯以及弧线的静态路线。</p>
+
+                </div>
+            </div>
+            <!-- END row -->
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="probootstrap-testimonial">
+                        <p class="mb10 probootstrap-rate">
+                            <i class="icon-star"></i>
+                        </p>
+                        <p><b>图像获取</b></p>
+
+                        <p>本项目需要从电脑摄像头获取图像。根据OpenCV中提供的 HighGUI模块，使用VideoCapture类打开摄像头及获取图像。</p>
+
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="probootstrap-testimonial">
+                        <p class="mb10 probootstrap-rate">
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                        </p>
+                        <p><b>预处理——投射变换</b></p>
+
+                        <p>	得到原始图像之后，首先遇到并且要解决的是视角问题。由于摄像头无法摆在地图的正 上方，因此从摄像头的视角获取的图像，都有着明显的透视效果，原本为方形的全局地图在照片中呈现梯形。 </p>
+
+
+                        <p>OpenCV对于图像的几何变换提供了一些函数。首先采用setMouseCallback（）函数通过鼠标点击获取原始图像的四个点，再指定这四个点的新位置，再通过getPerspectiveTransform() 和 warpPerspective（）将整张图根据这四个点的相对位移进行变换。在项目中我们将变换后的图片设置为400*400像素。</p>
+                    </div>
+                </div>
+                <div class="clearfix visible-sm-block"></div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="probootstrap-testimonial">
+
+                        <p class="mb10 probootstrap-rate">
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                        </p>
+                        <p><b>二值化</b></p>
+
+                        <p>二值化是获取路线的第一步。经过透视变换之后，我们得到了很规则的地图。但是由于光照不均匀、材质颜色不均匀、 摄像头的随机杂色“噪音”等等因素，这个图像对于控制程序来说还是过于复杂。而二值化函数通过设置一个阈值，遍历图片的所有点将地图上的点明确为“纯黑”和“纯白”两种颜色，为后续获取准确轨道打好基础。我们使用createTrackbar（）函数创建滑动条来设置该阈值。滑动条的优势是可以在程序运行时实时拖动来改变阈值，并且能以图像形式将结果显式反映在电脑屏幕上，更可以在实际运行时适应各种不同的环境亮度，具有较高的直观性、便捷性和适应性。</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="probootstrap-testimonial">
+                        <p class="mb10 probootstrap-rate">
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-outlined"></i>
+                        </p>
+                        <p><b>细化</b></p>
+
+                        <p>二值化后的图像若直接进行直线识别则会导致同一路径出现多条平行直线，因此需要先将目标线“变细”。二值化后的图像可以应用一类图像处理方法，称作形态学图像处理。细化就是其中的一 种，细化在直观上就是让图像变细，但仍然保持原来的连接性。细化是一个迭代的过程，每 次只能将图像消去“一圈”。 OpenCV 并没有提供细化函数，本项目采用一个根据 T. Y. Zhang 等人在论文 A fast parallel algorithm for thinning digital patterns 中提出的细化算法编写的函数。参数中的输入输出图像都必须是 8 位单通道灰度图像，第三个参数 指定细化的次数，本项目中采用细化10次，可以获得宽度为1像素线条。</p>
+
+                    </div>
+                </div>
+                <div class="clearfix visible-sm-block"></div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="probootstrap-testimonial">
+                        <p class="mb10 probootstrap-rate">
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+
+                        </p>
+                        <p><b>直线识别</b></p>
+
+                        <p>细化后的路径为一系列连续或离散的点，不方便直接提取特征点，因此需要进行直线识别。直线识别可识别出长直线并将弧线别为若干短直线，其灵敏度可通过调节参数来确定。这一过程通过Hough变换来完成。</p><p>Hough变换通过在参数空间里进行简单的累加统计，然后在Hough参数空间寻找累加器峰值的方法检测直线。Hough变换的实质是将图像空间内具有一定关系的像元进行聚类，寻找能把这些像元用某一解析形式联系起来的参数空间累积对应点。在参数空间不超过二维的情况下，这种变换有着理想的效果。</p><p>OpenCV中已提供了基于Hough变换的函数。本项目采用HoughLinesP() 函数获取直线，该函数可以获得所有所得线段的两端点坐标。</p>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="probootstrap-testimonial">
+                        <p class="mb10 probootstrap-rate">
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star-outlined"></i>
+
+                            、
+                        </p>
+                        <p><b>路线（特征点）计算</b></p>
+
+                        <p>由Hough变换得到的直线组无可避免地存在直线重复、部分重叠甚至全部重叠的情况，无法直接用作路径，为解决这一问题，我们将路线获取问题转化为特征点获取问题，将直线组内的各直线端点同等看待，都作为路径上的必经点组成点集，小车到达一个点后驶向下一个点。首先获取起点。本项目采用起点可变模式，根据小车初始位置来确定起点，具体方式见后续说明。起点确定后，依次寻找距离上一点最近的点作为下一目标点。由于Hough变换所得一些直线过长，其两端点间的距离可能长于其中一端点到别的线段端点的距离，我们在获取点的时候，若直线的两端点距离大于150像素，则将其中点也加入点集。而对于距离过小的前后两点，我们将距离小于25像素的相邻两点删去一点以保持路径的整洁性。除此之外，若连续三点组成的两条线段夹角大于170°，则删去中间的点，以避免将直线识别为作为直线的误差，避免不必要的拐弯。最终，我们获得一个简洁却不失贴合度的点集路线。</p>
+                    </div>
+
+                </div>
+                <div class="row text-center mb100">
+                    <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                        <br /><br /><br />
+                        <h3>部分运行截图</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 class="text-black probootstrap-check-2"> 二值化结果</h4>
+                        <p><img src="img/erzhihua.PNG" alt="" class="img-responsive probootstrap-shadow"</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="text-black probootstrap-check-2"> 路径识别结果</h4>
+                        <p><img src="img/lujing.PNG" alt="" class="img-responsive probootstrap-shadow"</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="text-black probootstrap-check-2"> 颜色识别</h4>
+                        <p><img src="img/yanse.jpg" alt="" class="img-responsive probootstrap-shadow"</p>
+                    </div>
+
+                </div>
+
+                <div class="row text-center mb100">
+                    <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                        <br /><br /><br />
+                        <h3>动态小车位置追踪</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p align="left">
+                            动态小车位置追踪需要实时获取小车位置及方向信息，因此需要不停地从摄像头获取图片，每获取一张图片都需对其进行同前的投射变换，然后再获取小车位置信息，然后通过小车寻轨算法计算路径并通过蓝牙将相应命令发送给小车，如此循环往复。
+                        </p><p align="left">
+                            本项目对小车位置的识别采用色块识别的方式，车头为蓝色，车尾为绿色。对颜色识别采取HSV方式，对分别对车头和车尾的三个通道值设定范围，共六个可变参数，同样采用滑动条方式在运行时进行参数设置。H值的允许范围为相应参数±30，S和V为±50。采用如上设计可以最大限度地适应不同光强，对于同一时刻同一地图由于光照不均匀、材质颜色不均匀、 摄像头的随机杂色“噪音”等产生的波动能够较大程度地适应。
+                        </p><p align="left">
+                            位置追踪采用CamShift（）函数对车头和车尾分别进行追踪，利用上述色块识别的结果作为CamShift（）函数的参数之一分别获取车头和车尾的中心坐标，再以此计算小车的位置和方向。在初始时拍摄一张照片，获取小车的初始位置，再寻找距离小车位置最近的路径特征点作为起点运行后续算法。
+                        </p><p align="left">	在程序运行过程中，我们将小车的头尾坐标信息实时显示在地图上，方便调试和观察。</p>
+                    </div>
+                </div>
+                <div class="row text-center mb100">
+                    <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                        <br /><br /><br />
+                        <h3 class="text-primary probootstrap-heading-2">小车走黑线算法设计</h3>
+                        <p>我们最开始设计了简单的算法思想，然后在调试的过程中逐渐出现了不同的bugs，我们再针对各种情况作出算法的优化。其中，有些算法由于太复杂，调试结果还不如原来方案，而且想要改进调参的时候很难发现是哪里出了问题，这样的未成功优化就会被淘汰。起初，我们设计了两种思路完全不同的算法，一个主力，另一个备选。这部分内容我们将依次介绍最初的算法、遇到的问题及其解决方案、备选方案。</p>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="text-black probootstrap-check-2"> 算法框架简述</h4>
+                        <p>图像处理部分已经规划出了路径。路径由若干个点构成，点之间用线段联结。我们要做的，就是用判断是否到了目标点，如果到了则走向下一点，没到则走向这一点，走完最后一个点则走向起点再次循环。如果车的位置（图像识别车头和车尾坐标的平均值）与目的点坐标的距离小于一定的值（critical distance 程序里面变量叫 crit_dist），则判断小车已经到达了目的点。</p>
+                        <p>如果小车离目的点还有一定的距离，则要执行走向目的点的程序（程序里叫函数 go_to）。过程为先判断车的角度是否为正确的，如果不是则通过原地转向来调整；如果正确，即车头已经瞄准目标点，则执行前进的指令，直到车与目标点的距离小到一定程度，则执行停止，然后寻找下一个点。</p>
+
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-black probootstrap-check-2"> 角度和转弯的修正</h4>
+                        <p> 我们有一个get_angle 函数，输入两个点可以返回向量的方位角。然而这个是用反三角函数实现的，所以为-90度到+270度。曾经我们的程序中若判断目的点到方位角大于车朝向的方位角，则左转，反之则右转。关于-90度左右临界点的问题，它会转一圈（多转半圈）。但后来发现了bug，它不仅是多走冤枉路那么简单，也会陷入死循环。比如，现在车的朝向是-85度，目的点的方位角是265度，那么车就会左转（逆时针转）。当转到差不多朝向-40度时，目的点方位角变成5度（上文提到了关于车坐标漂移的情况，车的漂移导致了目的点方位角的漂移）。此时车往回转，刚转到20度左右，目的点又成了-265度，从此陷入死循环。于是我们进行了修正，修正判断左转右转的算法。不再是简单的比大小，我们设定了四种情况，左转右转是由目的点方位角（变量dest_angle）和车朝向（变量car_angle）共同决定的，使其选择左和右近的一边去旋转。这样就消除了这一个死循环的bug.</p>
+
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-black probootstrap-check-2"> 阈值的修正</h4>
+                        <p>之前我们定义距离阈值（crit_dist）和角度阈值（crit_angle），直接设定其为某个常数。后来我们发现，车跑赛道的过程中有折返现象，即车（肉眼看起来）已经几乎经过目的点，但程序认为跑过度了，又折回去重新走那个点。我们分析，这与距离阈值的定义有关。当跑道上的弯为钝角弯时，我们认为这个值可以宽容一点，毕竟我们的要求是车的框架不允许完全离开黑线。所以钝角是可以稍微跑出去，就可以算它到了，而去找下一个点。但是锐角弯，要求就比较严格，误差不允许太大。于是我们添加函数，让crit_dist 取决于三个关键点，此目的点、上一个目的点、下一个目的点，这样可以知道这一个弯的转角到底有多大。</p>
+
+                        <p>只有一个三点决定crit_dist 还不够，还要修正crit_angle. 想象一下，如果车离目的点很远，这时车角度如果稍微偏一点点，那么路径在长度上就会偏很大，所以当变量Dist（车距目的点的距离）很大时，就让crit_angle很小。而当Dist很小时，车可能已经快到距离阈值了，但是还在被角度严格控制，左扭右扭，不去果断跑向目的点。所以，在这个时候，我们可以稍微放宽对角度对要求。这样一来，crit_angle就由 crit_dist和 Dist共同决定。</p>
+
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-black probootstrap-check-2"> 转弯方式的修正</h4>
+                        <p>最开始我们用的单轮转动来实现转弯，跑弯道的时候都很好，直到有一次我们发现了bug. 当车离目的点距离很短但未达到判断到达的阈值距离时，如果车的方向不正，那么程序会执行转向，然而在某种条件下，这里会陷入左右转的死循环。我们分析了一下原因，如下图。蓝色三角为目的点，蓝色矩形为小车当前位置。那么此时，距离大于判断到达阈值距离，而且车头朝向没有对准，此时就会指令左转。但是单轮转动，车就会以左轮（红点）为旋转中心。但实际情况下，左轮不是静止的，而会被拖动，从而使坐标系偏移过大，从而转到绿色矩形的位置。而这样的转动具有不确定性，往往都是好几帧不动而后某一帧动了非常多。所以我们改为了两轮转动，一向前一向后，使旋转中心变为两个前轮的中点，这样减小了坐标系的漂移，也降低了转动幅度的突变。</p>
+                        <p><img src="img/zhuanwan.png" alt="" class="img-responsive probootstrap-shadow"</p>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <h4 class="text-black probootstrap-check-2"> 函数连续化和平滑化</h4>
+                        <p>最开始我们的函数如图所示。用了一个constrain函数，设定上限（ceiling）和下限（bottom），使一个计算的返回值控制在上下限之间。图中的crit_angle 就被控制在了两条红线之间。这里还有两个自变量，就是Dist 和crit_dist, 它们各自决定的对crit_angle 的影响如蓝线所示。那么，调用一下constrain 函数，给这两个自变量各自对应的结果取max, 则得到了这条分为四段的绿色折线，这就是最终值。</p>
+                        <p>我们已经实现了函数的连续化，但是斜率仍然是离散的。我们就在关键拐点处进行了e指数拟合，把那些尖锐的拐点“削平”，这样车的反应就不会有过度的突变和死循环了。</p>
+                        <p><img src="img/lianxu.png" alt="" class="img-responsive probootstrap-shadow"</p>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <!-- END section -->
+    <!--系统测试情况-->
+    <section class="probootstrap-section" data-section="ceshi">
+        <div class="container">
+            <div class="row text-center mb100">
+                <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                    <h2 class="mb30 text-black probootstrap-heading">系统测试情况</h2>
+                    <p align="left">我们先给测试的环境进行自我评价。我们的跑道的路线多样性，如同驾照的科目二考试，什么地形都有。我们有长直线、有直角弯、有钝角弯、甚至有锐角弯、还有长曲线、有锯齿状的连续急弯、还有反向转弯。也就是说，我们设计的这种赛道，就是在增加难度，让小车不能仅靠固定的程序去跑线，而是要分析各种情况，给出不同的解决方案。</p>
+                    <p align="left"> 视频中可以看到，我们的小车在测试的过程中已经达到我们的要求。首先，全程都在线上，从来没有跑出赛道过。其次，在路径稳定的条件下，我们也没有以时间为代价。小车虽然速度不是很快（为了安全），虽然有时候会原地“思考”，但从未束手无策过。也就是说，小车停下来计算下一步的走法之后，就会沿着这个路径走下去，并且正确，而不是犹犹豫豫，经常变换指令，导致动作的不连贯。最后，我们也做到了具体情况具体应对。小车跑锯齿形赛道的时候，停车的点非常好，刚好在转弯处；跑长线的时候，对于由于左右轮摩擦力不一致导致的偏移，小车能够自动调整回来；跑弧线的时候，小车能够一点一点转弯（如左图，黑线跑道，红线实际路径），而没有左右来回转的过度反应（如右图，黑线跑道，红线实际路径）。</p>
+                    <p><img src="img/jieguo.png" alt="" class="img-responsive probootstrap-shadow"</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="text-black probootstrap-check-2"> 赛道</h4>
+                            <p>虽然我们的跑道可以说是“全地形的”，但我们仍然测试了其它赛道。我们借了别的组的赛道拿过来测试一下，我们也在大厅里跑过地面上贴的赛道。最后的结果都很好，不同的赛道都能够顺利跑下来。但是仍然有瑕疵，我们在跑地砖上的长距离弧线时，有一小段急弯出现了抄近道现象。那段赛道是个曲线，曲率半径最开始很大，然后突然变得很小，就在那里车从弯道内侧切了过去。这是因为，我们的算法里有个机制，识别黑线直线化之后，如果出现两条相邻的短线段，则合并为一条。于是乎，急弯之处每条线段都很短，合并就递归了，就全都合并为一条不断的线段了。</p>
+                        </div>
+                        <div class="col-md-6">
+
+                            <h4 class="text-black probootstrap-check-2"> 地面材质</h4>
+                            <p>板子和地砖对于小车来说有区别。硬纸板材质较软，小车放上去之后轮子可以使纸板发生形变，也就是轮子陷下去，接触的面积大，所以小车在转弯时不太容易发生打滑。而在地砖上，就容易发生打滑，转弯的平均角速度变慢了。我们在屏幕上看到输出变量的窗口，确实这两个地面材料对角速度有影响。但是，这样并不影响我们的精准度，虽然有一些影响速度。 </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="text-black probootstrap-check-2">光线</h4>
+                            <p>
+                                我们没能设计出颜色自动识别的机制，所以每次都要手动调一下参数。有时候环境亮度不同，我们的颜色参数差别也比较明显。如果室内光线比较强，那么关键颜色（蓝和绿）与环境的对比度就大，就不容易失真。但如果环境本身很暗，设初值的时候颜色就有些失真。等到车跑起来，颜色就变了。一个是因为两个色块的倾斜角度会变，导致亮度变化，另一个是因为天花板上灯照得不均匀，亮度随位置而变化。总之，我们的车，在安全环境下的安全光线的前提下，可以保证颜色不失真。
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END section -->
+    <!--演示录像-->
+    <section class="probootstrap-section probootstrap-bg-light" id="features" data-section="luxiang">
+        <div class="container">
+            <div class="row text-center mb100">
+                <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                    <h2 class="mb30 text-black probootstrap-heading">演示录像</h2>
+                    <p>以下是助教检测时的录像</p>
+                    <object width="800" height="640" data="46.mp4" type="video/mp4">
+                        <param value="46.mp4">
+                        <img width="400" height="260" alt="Flash is not supported!" src="noflash.gif">
+                    </object>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END section -->
+    <!--改进方向-->
+    <section class="probootstrap-section" data-section="gaijin">
+        <div class="container">
+            <div class="row text-center mb100">
+                <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                    <h2 class="mb30 text-black probootstrap-heading">改进方向</h2>
+                    <p>我们的系统还存在很大进步空间，以下是改进方向</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <h4 class="text-black probootstrap-check-2"> 未考虑摩擦力</h4>
+                            <p>同样的指令，针对不同材质的地面，小车动作的幅度也是不一样的。比如，同样是执行一帧的“左转”，在纸板上的旋转角度就要大于地砖上。如果想要在不同材料的地面旋转相同角度，可以在跑线之前加一个判断摩擦力的模块。先让小车连续转若干帧，然后摄像头检测旋转的角度，即可判断地面的摩擦力是大还是小，从而决定每一个指令生成动作的延续时间。这样可以让小车在不同环境下做出相同的动作效果。 </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="text-black probootstrap-check-2"> 卡顿现象</h4>
+                            <p>由于系统存在延时，我们最开始为了不让车不要跑/转得太多，使指令的作用时间是有限的。比如，如果小车接收到“左转”指令，它不是一直左转直到接收到下一条指令，而是左转持续几百毫秒之后就会停下来等待下一条指令。我们这样设计，是为了安全，防止动作过大。卡顿的存在，也就是在说明，我们执行动作的时间小于指令发送的周期。如果要消除卡顿，那么就需要升高指令的频率（否则，延长动作的时间，这样不安全）。然而我们设备已经利用到上限了。所以如果改进，可能需要提高硬件的配置。</p>
+                        </div>
+                        <div class="col-md-6">
+
+                            <h4 class="text-black probootstrap-check-2">弧线路径可平滑化</h4>
+                            <p>我们目前的转弯都是原地转弯，而没有跑动转弯。所以，我们跑出来的就全是折线。如果程序能识别弯道，程序里规划了要转半径为多少的弯，那么可以控制小车两个轮子不同的速度，从而实现动态转弯。</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="text-black probootstrap-check-2">车本身不平衡</h4>
+                            <p>
+                                这里关键词“平衡”，指的不是重量，而是左右轮的抓地力。有时候，在一条长直线上，给出指令“前进”，它会跑出一个弧度，因为左右轮抓地力不平衡。这时候我们可以调整重心，轮子承重越大，陷进纸板越深，接触越充分，抓地力越大。同时，我们也可以在轮子上缠双面胶，改变其黏性。
+                            </p>
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <h4 class="text-black probootstrap-check-2">颜色自动识别</h4>
+                            <p>我们设计的是HSV，即色号、饱和度、亮度的值都在两个上下阈值之间的时候判断为关键色块。而实际中，亮度变化太大，我们可以把V值设宽一些。还有，我们可以通过全局的三值来确定亮度是如何的，从而决定V值应该取多大。</p>
+                        </div>
+                        <div class="col-md-6">
+
+                            <h4 class="text-black probootstrap-check-2">安全机制</h4>
+                            <p>我们可以考虑当出现故障时就让车停下来，而不是像无头苍蝇一样继续在一个错误的机制下巡航。比如，当颜色失真的时候，可以让车停下来。比如，当跑出界的时候，可以停下来。比如，当车的位置突然发生侧移的时候（纸板瞬移，模拟路面上的地震），可以停下来，知道抖动停止后再继续走。</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="text-black probootstrap-check-2">坐标系的定义</h4>
+                            <p>
+                                如图所示，程序会识别蓝色和绿色两个色块，然后会取其中点（圆圈）作为车的坐标。以后的算法中会认为这个中心为车的坐标。然而这不是最妥当的。车的前轮（红色）为主动轮，后轮（黄色）为从动轮。所以车在转弯时，主动轮一前一后地转，这样自转的中心就为两轮连线的中点（三角）。这个时候，如果按照刚才的坐标系，小车在“自转”的时候小车坐标也是在变的。这样尤其在判断的阈值临界处，很容易出问题。所以对于坐标选择，理想的原点不是小车中心，而是中心考前位置，即旋转中心。
+                            </p>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p><img src="img/zuobiao.png" alt="" class="img-responsive probootstrap-shadow"</p>
+                        </div>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <!-- END section -->
+    <!--成员-->
+    <section class="probootstrap-section probootstrap-bg-light" id="features" data-section="chengyuan">
+        <div class="container">
+            <div class="row text-center mb100">
+                <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                    <h2 class="mb30 text-black probootstrap-heading">成员分工及感想</h2>
+                    <p>本组共三人，分别负责硬件（嵌入式）、图像识别和算法设计</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="probootstrap-testimonial">
+                        <h4>
+                            <p><img src="img/guqing.jpg" class="img-responsive img-circle probootstrap-author-photo" alt=""></p>
+
+                            <b>谷晴——硬件、嵌入式</b></h>
+                            <p></p>
+                            <p>在课程初期，我们召开小组讨论会，对整体架构有了基本的印象，对关键技术有了初步的概念。接着，我们根据自己的专业特长进行分工，两位计算机系和自动化系的队员负责图像识别，运动算法的实现。我作为电气专业的学生，则承担起串口通信，硬件搭建，车辆运动嵌入式开发等偏硬件方面的工作，做好硬件的保障。与此同时我也向曾经上过张士文老师《基于安卓开发平台的电子系统综合设计》的学长请教如何快速上手写一个APP，以方便单独对车辆运动进行调试。在整个工科创过程中，我觉得团队协作非常重要，一个人负责的部分出现为题都会出现整个系统的瘫痪；同时，我们在联合调试过程中遇到了很多困难，车轮抓地力不够，我们使用双面胶和增加车辆载重来增加抓地力；车辆走直路没问题后，我们进一步的尝试直角弯，锐角弯，钝角弯，甚至是掉头，我们努力的将系统变得性能越来越稳定，指令判断越来越智能，功能库越来越丰富。在写APP的过程中，我发现APPINVENTOR是一个非常容易上手的平台，可视化开发和代码功能块开发相结合使得整个过程简单而有趣，我也希望能在本科阶段选上张老师的这门课，跟着张老师进行系统性的学习。总之，在整个过程之中，锻炼了我动手的能力，分析问题的能力以及解决问题的决心，我非常感谢团队中的每一位队员。</p>
+
+                            <p class="mb0">&mdash; 谷晴</p>
+</div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="probootstrap-testimonial">
+
+                        <h4>
+                            <p><img src="img/wuyu.jpg" class="img-responsive img-circle probootstrap-author-photo" alt=""></p>
+                            <b>吴雨——图像识别</b></h>
+                            <p></p>
+
+                            <p>本次科创课程我们较早就开始了讨论，因此各阶段分配的时间相对均衡。我负责的部分是图像处理。OpenCV中已经提供了相当多的复杂函数，涉及颇多的数学知识，我在使用过程中对其中的原理也有了一些了解。开始时我采用BGR进行颜色识别，但是在调试的过程中发现该方法受亮度影响过大以至于只要光照稍不均衡就无法再整张地图范围内正确识别，与别组交流以及上网搜索后我得知HSV在图像识别方面往往能获得更好的准确度。更改过后程序果然顺利运行了。另一突破就是滑动条的使用。开始实现功能时未考虑实时调节参数，导致调试及其繁琐，于是加入滑动条这一元素，大大增加了程序的适应性和调试的方便性，获得不小成就感。我遇到的另一难题是直接使用Hough变换获得的直线最在各种问题，如交叉、重边等等，开始时我试图通过调节参数来改进，但是尝试了很久始终得不到“完美”的一组参数。事实上，没有一组参数能够保证适应所有的情况。后来我在与别组同学交流后改变思路，变“沿线走”为“向点走”，完美得解决了这一问题。另外，减少特征点的个数是在联合调试时才有的想法，减少不必要的特征点是优化小车运行结果的重要环节。这充分体现了这个系统的统一性。在联合调试中，三个同学负责的每个部分都经过了不断调整，最终得到了较为满意的结果。通过本次课程，我了解了不少有关图像识别的知识，对一个小型项目的完成过程有了一定程度地了解，发现了各个环节关系紧密的事实，体会到了团体合作之美。总体来说该课程过程开心，结果不差，是一次不错的体验。非常开心认识了各位队友。</p>
+
+                            <p class="mb0">&mdash; 吴雨</p>
+</div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="probootstrap-testimonial">
+
+                        <h4>
+                            <p><img src="img/bote.png" class="img-responsive img-circle probootstrap-author-photo" alt=""></p>
+                            <b>陈泽放——算法设计</b></h>
+                            <p></p>
+                            <p>
+                                我最初选这门课，纯粹是想要学到新的知识，新的应用类知识。在学期初的时候看，我认为这学期的课程并不多，可以有精力搞一些工科创之类的有意义的内容。然而学期进行到四分之一的时候，我发现了本学期的课程都非常的难。而且，我还有一门我本专业必修的工科创，我总共是四门比较困难的专业课和两门工科创。当时真的感到了任务的高压。开始时，我们布置了大致的分工，以及规划了各自分工部分的主要算法思想。学期中间，我们的项目也遇到了一些技术瓶颈，常常是在讨论时里研究几个小时然而却没有实质进展。我们也曾经问过别的组的同学，但很多组进度并没有那么快，还有很多组和我们一样卡在技术瓶颈了。我们尝试找找针对性的教程和攻略，但google上搜到的类似相关性的结果太多太多了，没有针对我们项目最合适的教程。在一段瓶颈期内，我们真的有一种“闭门造车”的感觉，这句话是双关，我们在讨论室里自主研发搞小车，然而没有太合适的外界帮助，方式也就比较封闭，进展也慢。后来我们通过学长的帮助，突破了卡了我们好几周的技术瓶颈。然后我们继续向前突破一个个瓶颈。在教学周第14、15、16周的工作日和周末里，我眼看着自己同专业的同学专心复习而自己却每天都在用大块时间逐步给项目排障、优化，其实心里有一种焦急感。我们到最后的时候，离deadline还有仅仅几天的时间，一边复习着考试一边排障。当时我们的实验结果并不乐观，能勉强跑下来。我们做好了两手准备，那几天继续debug，如果成功了就提交优化后的方案，没成功则保持原有的保底方案，因为新方案是否成功都是未知。最后，当新方案跑成功时，我们那一瞬间的心情就像参与曼哈顿计划的研究人员看的新墨西哥州的沙漠上升起蘑菇云一样激动。我们在尝试中虽然有借助于外援，但我们也是以学习、请教的方式寻求帮助，从来没有索取现成资源。我们每个人都付出了，都探索了。我们认为这是值得的！
+                            </p>
+
+                            <p class="mb0">&mdash; 陈泽放</p>
+</div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <!-- END section -->
+    <!--致谢-->
+    <section class="probootstrap-section" id="features" data-section="zhixie">
+        <div class="container">
+            <div class="row text-center mb100">
+                <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                    <h2 class="mb30 text-black probootstrap-heading">致谢</h2>
+                    <p>
+                        本次课程中得到了很多老师的指导和同学的帮助，感谢老师助教们提供的指导和支持。感谢工科创负责老师们精心设计的课程规范，让我们能够从实际的角度出发，理解和学习图像识别，蓝牙串口通信，嵌入式开发等相关知识。在系统实现中，我们首先需要理解系统的设计原理，然后对整个系统进行模块化划分，逐个击破后进行联合调试，对参数进行进一步的选择，对系统进行进一步的优化。这是我们第一次接触图像处理的相关知识，在设计的过程之中遇到了很多困难，比如，如何实现蓝牙串口通信，如何接线，如何保证运动状态下接线稳定等问题，在这方面要感谢孙琦学长的帮助。在器件购买方面，由于原来的充电器出现故障，我们又重新购买了电池和充电器，同时也提出了在车辆上加装适当大小充电宝供电，并以此来提高车辆载重，增大车轮摩擦力和抓地力，同时提高车辆的稳定性。在本次工科创结束，我们召开总结会，针对实验中遇到的问题以及分工合作的效果等问题展开了讨论，我们认为首先，理论与实践并重，将学习的理论知识应用于实践才能够对理论知识有更加深刻的了解。其次，工程的成功是不断的试错累计的结果，理论到工程的成功绝不是一蹴而就的。然后，科研是一件需要构想、坚持、探索、创新的一门艺术，是我们不懈的追求。最后，有效指导，合理分工和步调一致是效率最大化的基础和最优方法。最后再一次感谢老师助教的指导，以及团队三人的精诚合作和不懈努力。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- END section -->
+    <!--附录-->
+    <section class="probootstrap-section probootstrap-bg-light" id="features" data-section="fulu">
+        <div class="container">
+            <div class="row text-center mb100">
+                <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+                    <h2 class="mb30 text-black probootstrap-heading">附录</h2>
+
+                    <p><b>嵌入式部分 代码如下</b></p>
+                </div>
+            </div>
+
+<pre>
+void setup()
+{
+Serial.begin(9600);
+pinMode( 10 , OUTPUT);
+pinMode( 12 , OUTPUT);
+pinMode( 13 , OUTPUT);
+pinMode( 9 , OUTPUT);
+
+}
+
+void loop()
+{
+  analogWrite(9 , 255);
+  analogWrite(10 , 255);
+  analogWrite(12 , 255);
+  analogWrite(13 , 255);
+  char val;
+  val=Serial.read() ;
+  if(val=='A')  left();
+  if(val=='B')  forward();
+  if(val=='a')  right();
+  if(val=='C')  stopp();
+}
+
+void right()
+{
+ analogWrite(12 , 0);
+ analogWrite(13 , 255);
+analogWrite(9 , 0);
+ analogWrite(10 , 255);
+ delay( 100 );
+}
+void left()
+{
+ analogWrite(9 , 255);
+ analogWrite(10 , 0);
+analogWrite(12 , 255);
+ analogWrite(13 , 0);
+ delay( 100 );
+}
+void forward()
+{
+analogWrite(9 , 255);
+analogWrite(10 , 0);
+analogWrite(12 , 0);
+analogWrite(13 , 255);
+delay( 190);
+}
+void stopp()
+{
+analogWrite(9 , 255);
+analogWrite(10 , 255);
+analogWrite(12 , 255);
+analogWrite(13 , 255);
+delay( 500 );
+}
+
+</pre>
+        </div>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <div class="container">
+            <div class="row text-center mb100">
+                <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+
+                    <p><b>软件部分 代码如下</b></p>
+                </div>
+            </div>
+<pre>
+//main.cpp
+#include<iostream>
+#include<vector>
+#include<opencv2/core/core.hpp>
+#include<opencv2/opencv.hpp>
+#include<opencv2/highgui/highgui.hpp>
+#include "opencv2/imgproc/imgproc_c.h"
+#include "opencv2/videoio/videoio_c.h"
+#include "serialPort.h"
+#include <cmath>
+
+#define PI 3.1415926535898
+#define X 0
+#define Y 0
+
+int g_nAlphaValueSlider;                 // 滑动条对应的变量
+double g_dAlphaValue;
+double g_dBetaValue;
+
+
+
+using namespace std;
+
+
+cv::Vec4f findCar(cv::Mat& frame, cv::Rect& selectionROI_h, cv::Rect& selectionROI_t, int HB, int HG, int HR, int TB, int TG, int TR);
+void myThreshold(cv::Mat& src, cv::Mat& dst, double threshold);
+void mouse(int mouseevent, int x, int y, int flag, void *param);
+void Change_Image(cv::Mat img, cv::Mat &transimg, cv::Mat &transmat);
+void Change_Image2(cv::Mat img, cv::Mat &transimg, cv::Mat &transmat);
+void cvThin(cv::Mat& src, cv::Mat& dst, int intera);
+
+int go_to(float, float, float, float, float, float, float);
+int go_to_v2(float, float, float, float, float);
+float get_angle(float, float);
+float Distance(float, float, float, float);
+float fn_a(float);
+float fn_d(float);
+float cri_ang_def(float, float);
+float constrain(float, float, float);
+float cri_dis_def(float, float, float, float, float, float);
+
+cv::Mat img1, img2, transmat;
+int g_nAlphaValue;
+
+int HB, HG, HR, TB, TG, TR;
+
+
+cv::Rect selectionROI_h;
+cv::Rect selectionROI_t;
+
+
+void on_Trackbar1(int g_nAlphaValue, void *)
+{
+	myThreshold(img2, img1, g_nAlphaValue); //1-二值图 2-方图 %阈值
+	cv::imshow("win3", img1);
+}
+
+void on_Trackbar2(int, void *)
+{
+	findCar(img2, selectionROI_h, selectionROI_t, HB, HG, HR, TB, TG, TR);
+}
+
+
+int main()
+{
+	cv::VideoCapture cam(0);
+	cam >> img1;//获取图片
+	Change_Image(img1, img2, transmat);//投射变换 1-原始图 2-方图
+
+	cv::namedWindow("win3");
+
+	cv::createTrackbar("bar", "win3", &g_nAlphaValue, 256, on_Trackbar1);
+	cv::waitKey(0);
+	cvThin(img1, img2, 10); //1-二值图 2-细化图 %迭代次数
+
+
+	cv::Mat img4(400, 400, CV_8UC3, cv::Scalar(0, 0, 0));
+
+
+	vector<cv::Vec4f> plines;//存放直线信息的向量	
+	vector<cv::Point> tmp;
+
+
+
+	vector<cv::Point> path;//按顺序存放路径上的点
+
+
+
+
+
+	cv::Vec4f point1;
+	cv::Point point(X, Y);
+	int distance;
+	size_t i;
+	cv::HoughLinesP(img2, plines, 1, CV_PI / 180, 20, 20, 10);//直线检测，获得直线 %参数待调
+
+   //找线端点
+	for (i = 0; i < plines.size(); i++)
+	{
+		point1 = plines[i];
+		tmp.push_back(cv::Point(point1[0], point1[1]));
+		if (Distance(point1[0],point1[2],point1[1],point1[3])>150) tmp.push_back(cv::Point((point1[0]+point1[2])/2, (point1[1] + point1[3]) / 2));
+		tmp.push_back(cv::Point(point1[2], point1[3]));
+	}
+
+	vector<cv::Point>::iterator itr, itrcl;
+
+	//找到起点
+	itr = itrcl = tmp.begin();
+	distance = ((*itrcl).x - point.x)*((*itrcl).x - point.x) + ((*itrcl).y - point.y)*((*itrcl).y - point.y);
+	for (; itr != tmp.end(); itr++)
+	{
+		if ((((*itr).x - point.x)*((*itr).x - point.x) + ((*itr).y - point.y)*((*itr).y - point.y)) < distance)
+		{
+			itrcl = itr;
+			distance = ((*itr).x - point.x)*((*itr).x - point.x) + ((*itr).y - point.y)*((*itr).y - point.y);
+		}
+	}
+	path.push_back((*itrcl));
+	point = (*itrcl);
+	tmp.erase(itrcl);
+
+	//找到路径上的其他点（合并距离小于等于25的相邻点）
+	while (tmp.size() != 0)
+	{
+		itr = itrcl = tmp.begin();
+		distance = ((*itrcl).x - point.x)*((*itrcl).x - point.x) + ((*itrcl).y - point.y)*((*itrcl).y - point.y);
+		for (; itr != tmp.end(); itr++)
+		{
+			if ((((*itr).x - point.x)*((*itr).x - point.x) + ((*itr).y - point.y)*((*itr).y - point.y)) < distance)
+			{
+				itrcl = itr;
+				distance = ((*itr).x - point.x)*((*itr).x - point.x) + ((*itr).y - point.y)*((*itr).y - point.y);
+			}
+		}
+
+		itr = path.end();
+		itr--;
+		if ((((*itr).x - (*itrcl).x)*((*itr).x - (*itrcl).x) + ((*itr).y - (*itrcl).y)*((*itr).y - (*itrcl).y)) > 625)
+		{
+				
+			if (path.size() > 1 && abs(get_angle((*itr).y - path[path.size() - 2].y, (*itr).x - path[path.size() - 2].x) - get_angle((*itr).y - (*itrcl).y, (*itr).x - (*itrcl).x)) > 170 / 180.0 * PI && abs(get_angle((*itr).y - path[path.size() - 2].y, (*itr).x - path[path.size() - 2].x) - get_angle((*itr).y - (*itrcl).y, (*itr).x - (*itrcl).x)) < 190 / 180.0 * PI)
+				path.erase(itr)；
+						
+			path.push_back((*itrcl));
+			point = (*itrcl);
+		}
+		tmp.erase(itrcl);
+
+
+	}
+
+	//画线
+
+	cv::namedWindow("path");
+	cv::imshow("path", img4);
+
+	for (i = 0; i < path.size() - 1; i++)
+	{
+		cv::line(img4, path[i], path[i + 1], cv::Scalar(255, 0, 0), 1, cv::LINE_AA);
+		cv::circle(img4, path[i], 3, cv::Scalar(0, 255, 0));
+		cout << path[i] << endl;
+	}
+	cout << path[i];
+	cv::circle(img4, path[i], 3, cv::Scalar(0, 0, 255));
+	cv::imshow("path", img4);
+	cv::waitKey(0);
+	cv::destroyAllWindows();
+
+	cv::Mat frame;
+
+	cv::namedWindow("output", cv::WINDOW_AUTOSIZE);
+	cam.read(frame);
+
+
+
+	if (frame.empty())
+		return -1;
+	Change_Image2(frame, img2, transmat);
+	cv::Rect2d head = selectROI("output", img2);
+
+
+	selectionROI_h.width = head.width;
+	selectionROI_h.height = head.height;
+	selectionROI_h.x = head.x;
+	selectionROI_h.y = head.y;
+
+	
+	cv::Rect2d tail = selectROI("output", img2);
+
+	selectionROI_t.width = tail.width;
+	selectionROI_t.height = tail.height;
+	selectionROI_t.x = tail.x;
+	selectionROI_t.y = tail.y;
+
+
+
+	cv::Point initial_car((head.x + tail.x) / 2 + (head.width + tail.width) / 4, (head.y + tail.y) / 2 + (head.height + tail.height) / 4);
+
+	//cv::destroyWindow("output");
+
+
+	cv::Vec4f car;
+	cv::Vec4f pre_car;
+
+	cv::namedWindow("tail");
+	cv::namedWindow("head");
+
+	cvtColor(img2, img1, CV_BGR2HSV);//转HSV
+
+
+	HB = 113;
+	HG = 192;
+	HR = 143;
+
+	TB = 58;
+	TG = 150;
+	TR = 93;
+
+
+	cv::createTrackbar("HH", "head", &HB, 180, on_Trackbar2);
+	cv::createTrackbar("HS", "head", &HG, 255, on_Trackbar2);
+	cv::createTrackbar("HV", "head", &HR, 255, on_Trackbar2);
+
+	cv::createTrackbar("TH", "tail", &TB, 180, on_Trackbar2);
+	cv::createTrackbar("TS", "tail", &TG, 255, on_Trackbar2);
+	cv::createTrackbar("TV", "tail", &TR, 255, on_Trackbar2);
+	
+	on_Trackbar2(HB, 0);
+	on_Trackbar2(HG, 0);
+	on_Trackbar2(HR, 0);
+
+	on_Trackbar2(TB, 0);
+	on_Trackbar2(TG, 0);
+	on_Trackbar2(TR, 0);
+
+	cv::waitKey();
+	cout << "OK" << endl;
+
+	cv::namedWindow("haha");
+	cv::imshow("haha", img4);
+
+	cv::waitKey();
+
+	
+
+	float angle, car_x, car_y, dest_angle, dest_angle_d, angle_d, cri_dist, cri_angle;
+	int num;
+	num = path.size();
+	i = 0;
+	int mini = 400 * 400 * 2;
+	for (int j = 0; j < path.size(); ++j)
+	{
+		if (mini >(path[j].x - initial_car.x)*(path[j].x - initial_car.x) + (path[j].y - initial_car.y)*(path[j].y - initial_car.y))
+		{
+			i = j;
+			mini = (path[j].x - initial_car.x)*(path[j].x - initial_car.x) + (path[j].y - initial_car.y)*(path[j].y - initial_car.y);
+		}
+	}
+	cout << initial_car << '\t' << path[i] << endl;
+	cv::waitKey();
+	pre_car[0] = 0; pre_car[1] = 0; pre_car[2] = 0; pre_car[3] = 0;
+
+	CSerialPort port;
+
+
+	while (!port.InitPort(6))
+	{
+		cout << "Failed to open port!" << endl;
+		cv::waitKey(1000);
+	}
+
+
+	cout << "connected" << endl;
+	
+	
+	
+	cv::circle(img4, path[0], 5, cv::Scalar(0, 255, 0));
+	while (cam.read(frame))
+	{
+		Change_Image2(frame, img2, transmat);
+
+		car = findCar(img2, selectionROI_h, selectionROI_t, HB, HG, HR, TB, TG, TR);//寻找小车
+
+		cv::circle(img4, cv::Point(car[0], car[1]), 3, cv::Scalar(0, 0, 255));
+		cv::circle(img4, cv::Point(car[2], car[3]), 3, cv::Scalar(255, 0, 0));
+
+		cv::circle(img4, cv::Point(pre_car[0], pre_car[1]), 3, cv::Scalar(0, 0, 0));
+		cv::circle(img4, cv::Point(pre_car[2], pre_car[3]), 3, cv::Scalar(0, 0, 0));
+		pre_car = car;
+
+
+		car_x = 0.5*(car[0] + car[2]);
+		car_y = 0.5*(car[1] + car[3]);
+		angle = get_angle((car[1] - car[3]), (car[0] - car[2]));
+		angle_d = angle / PI * 180;
+		dest_angle = get_angle((path[i].y - car_y), (path[i].x - car_x));
+		dest_angle_d = dest_angle / PI * 180;
+
+
+		if (i > 0 && i < num - 1)
+			cri_dist = cri_dis_def(path[i - 1].x, path[i - 1].y, path[i].x, path[i].y, path[i + 1].x, path[i + 1].y);
+		else if (i == 0)
+			cri_dist = cri_dis_def(path[num - 1].x, path[num - 1].y, path[i].x, path[i].y, path[i + 1].x, path[i + 1].y);
+		else if (i == num - 1)
+			cri_dist = cri_dis_def(path[i - 1].x, path[i - 1].y, path[i].x, path[i].y, path[0].x, path[0].y);
+
+		cri_angle = cri_ang_def(cri_dist, Distance(car_x, car_y, path[i].x, path[i].y));
+
+		cout << "Dist" << Distance(car_x, car_y, path[i].x, path[i].y) << "  ang" << angle_d << "  des_ang" << dest_angle_d << "  car" << car_x << " " << car_y << "  cd" << cri_dist << "  ca" << cri_angle/PI*180 <<"  i"<<i<< endl;
+
+
+		if (Distance(car_x, car_y, path[i].x, path[i].y) < cri_dist) {
+			port.WriteData('C'); cout << "c";
+
+			cv::circle(img4, cv::Point(path[i].x, path[i].y), 5, cv::Scalar(0, 0, 0));
+			if (i == num - 1)
+				i = 0;
+			else i++;
+			cv::circle(img4, cv::Point(path[i].x, path[i].y), 5, cv::Scalar(0, 255, 0));
+
+		}
+		else
+		{
+			if (go_to(angle, car_x, car_y, path[i].x, path[i].y,  cri_dist, cri_angle) == 1)
+			{
+				port.WriteData('a');
+			}
+
+			else if (go_to(angle, car_x, car_y, path[i].x, path[i].y,  cri_dist, cri_angle) == 2)
+				port.WriteData('A');
+			else if (go_to(angle, car_x, car_y, path[i].x, path[i].y,  cri_dist, cri_angle) == 3)
+				port.WriteData('B');
+
+		}
+
+		cv::imshow("haha", img4);
+		cv::waitKey(1);
+	}
+
+	cam.release();
+	port.ClosePort();
+	cv::destroyAllWindows();
+	system("PAUSE");
+
+	return 0;
+}
+
+</pre>
+        </div>
+        <!--     <div class="row text-center mb100">
+        <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+            <p></p>
+            <p></p>
+            <p><b>others.cpp 代码如下</b></p>
+        </div>
+    </div>-->
+        <div class="container">
+<pre>
+//others.cpp
+#include<iostream>
+#include<vector>
+#include<opencv2/core/core.hpp>
+#include<opencv2/opencv.hpp>
+#include<opencv2/highgui/highgui.hpp>
+#include "opencv2/imgproc/imgproc_c.h"
+#include "opencv2/videoio/videoio_c.h"
+using namespace cv;
+using namespace std;
+
+#define PI 3.1415926535898
+#define THRE 40
+
+/* ---------------------------------- findCar--------------------------------------------  */
+
+
+Vec4f findCar(Mat& frame, Rect& selectionROI_h, Rect& selectionROI_t, int HB, int HG, int HR, int TB, int TG, int TR)
+{
+	Mat tarcol[3];
+	Mat tarhsv;
+	cvtColor(frame, tarhsv, CV_BGR2HSV);//转HSV
+
+	//取绿色,尾
+	Mat blue = tarhsv.clone();//HSV
+	Mat_<Vec3b>::iterator it = blue.begin<Vec3b>();  //获取起始迭代器
+	Mat_<Vec3b>::iterator it_end = blue.end<Vec3b>();  //获取结束迭代器
+	for (; it != it_end; it++)
+	{
+		//在这里分别访问每个通道的元素
+
+
+		if (((*it)[0] > TB - THRE / 2) && ((*it)[0] < TB + THRE / 2) && ((*it)[1] < TG + THRE) && ((*it)[1] > TG - THRE) && ((*it)[2] < TR + THRE) && ((*it)[2] > TR - THRE))
+		{
+			(*it)[0] = 255; (*it)[1] = 255; (*it)[2] = 255;
+		}
+		else
+		{
+			(*it)[0] = 0; (*it)[1] = 0; (*it)[2] = 0;
+		}
+
+	}
+	split(blue, tarcol);
+	imshow("tail", blue);
+
+
+
+	RotatedRect trackBox_t = CamShift(tarcol[2], selectionROI_t, TermCriteria((TermCriteria::COUNT | TermCriteria::EPS), 10, 1));
+
+	//取蓝色,头
+
+	Mat red = tarhsv.clone();//HSV
+	it = red.begin<Vec3b>();  //获取起始迭代器
+	it_end = red.end<Vec3b>();  //获取结束迭代器
+	for (; it != it_end; it++)
+	{
+
+		//在这里分别访问每个通道的元素
+
+
+		if (((*it)[0] > HB - THRE / 2) && ((*it)[0] < HB + THRE / 2) && ((*it)[1] < HG + THRE) && ((*it)[1] > HG - THRE) && ((*it)[2] < HR + THRE) && ((*it)[2] > HR - THRE))
+		{
+			(*it)[0] = 255; (*it)[1] = 255; (*it)[2] = 255;
+		}
+		else
+		{
+			(*it)[0] = 0; (*it)[1] = 0; (*it)[2] = 0;
+		}
+
+	}
+
+	split(red, tarcol);
+	imshow("head", red);
+
+	RotatedRect trackBox_h = CamShift(tarcol[2], selectionROI_h, TermCriteria((TermCriteria::COUNT | TermCriteria::EPS), 10, 1));
+
+	return Vec4f(trackBox_h.center.x, trackBox_h.center.y, trackBox_t.center.x, trackBox_t.center.y);
+
+
+}
+
+
+
+
+
+/* ---------------------------------- threshold--------------------------------------------  */
+void myThreshold(Mat& src, Mat& dst, double threshold)
+{
+	Mat trans = src.clone();
+	Mat_<Vec3b>::iterator it = trans.begin<Vec3b>();  //获取起始迭代器
+	Mat_<Vec3b>::iterator it_end = trans.end<Vec3b>();  //获取结束迭代器
+	for (; it != it_end; it++)
+	{
+		//在这里分别访问每个通道的元素
+		if (((*it)[0] < threshold) && ((*it)[1] < threshold) && ((*it)[2] < threshold))
+		{
+			(*it)[0] = 255; (*it)[1] = 255; (*it)[2] = 255;
+		}
+		else
+		{
+			(*it)[0] = 0; (*it)[1] = 0; (*it)[2] = 0;
+		}
+	}
+
+	Mat chan[3];
+	split(trans, chan);
+	chan[0].copyTo(dst);
+
+}
+
+
+/* ---------------------------------- changeImage--------------------------------------------  */
+#define SIZE 400
+//点击顺序：lt,rt,lb,rb
+//int sx, sy;
+int num = 0;
+int dx[4] = { 0,SIZE,0,SIZE };
+int dy[4] = { 0,0,SIZE,SIZE };
+Point2f originpoints[4], newpoints[4];
+
+void mouse(int mouseevent, int x, int y, int flag, void *param)
+{
+	if (mouseevent == 4)//左键释放
+	{
+		//sx = x; sy = y;
+		originpoints[num] = Point2f(x, y);
+		newpoints[num] = Point2f(dx[num], dy[num]);
+		circle(*((Mat*)(param)), originpoints[num], 3, Scalar(0, 255, 0));
+		imshow("win1", *((Mat*)(param)));
+		num++;
+	}
+}
+
+void Change_Image(Mat img, Mat &transimg, Mat &transmat)
+{
+	Size2d size(SIZE, SIZE);
+	namedWindow("win1");
+	imshow("win1", img);
+	setMouseCallback("win1", mouse, &img);
+	waitKey(0);
+	transmat = getPerspectiveTransform(originpoints, newpoints);
+	warpPerspective(img, transimg, transmat, size);
+	namedWindow("win2");
+	imshow("win2", transimg);
+	//	waitKey(5000);
+
+}
+
+void Change_Image2(Mat img, Mat &transimg, Mat &transmat)
+{
+	Size2d size(SIZE, SIZE);
+	warpPerspective(img, transimg, transmat, size);
+
+}
+
+
+
+
+/* ---------------------------------- cvThin--------------------------------------------  */
+void cvThin(Mat& src, Mat& dst, int intera)
+{
+	if (src.type() != CV_8UC1)
+	{
+		printf("只能处理二值或灰度图像\n");
+		return;
+	}
+	//非原地操作时候，copy src到dst
+	if (dst.data != src.data)
+	{
+		src.copyTo(dst);
+	}
+
+	int i, j, n;
+	int width, height;
+	width = src.cols - 1;
+	//之所以减1，是方便处理8邻域，防止越界
+	height = src.rows - 1;
+	int step = src.step;
+	int  p2, p3, p4, p5, p6, p7, p8, p9;
+	uchar* img;
+	bool ifEnd;
+	int A1;
+	cv::Mat tmpimg;
+	//n表示迭代次数
+	for (n = 0; n < intera; n++)
+	{
+		dst.copyTo(tmpimg);
+		ifEnd = false;
+		img = tmpimg.data;
+		for (i = 1; i < height; i++)
+		{
+			img += step;
+			for (j = 1; j < width; j++)
+			{
+				uchar* p = img + j;
+				A1 = 0;
+				if (p[0] > 0)
+				{
+					if (p[-step] == 0 && p[-step + 1] > 0) //p2,p3 01模式
+					{
+						A1++;
+					}
+					if (p[-step + 1] == 0 && p[1] > 0) //p3,p4 01模式
+					{
+						A1++;
+					}
+					if (p[1] == 0 && p[step + 1] > 0) //p4,p5 01模式
+					{
+						A1++;
+					}
+					if (p[step + 1] == 0 && p[step] > 0) //p5,p6 01模式
+					{
+						A1++;
+					}
+					if (p[step] == 0 && p[step - 1] > 0) //p6,p7 01模式
+					{
+						A1++;
+					}
+					if (p[step - 1] == 0 && p[-1] > 0) //p7,p8 01模式
+					{
+						A1++;
+					}
+					if (p[-1] == 0 && p[-step - 1] > 0) //p8,p9 01模式
+					{
+						A1++;
+					}
+					if (p[-step - 1] == 0 && p[-step] > 0) //p9,p2 01模式
+					{
+						A1++;
+					}
+					p2 = p[-step] > 0 ? 1 : 0;
+					p3 = p[-step + 1] > 0 ? 1 : 0;
+					p4 = p[1] > 0 ? 1 : 0;
+					p5 = p[step + 1] > 0 ? 1 : 0;
+					p6 = p[step] > 0 ? 1 : 0;
+					p7 = p[step - 1] > 0 ? 1 : 0;
+					p8 = p[-1] > 0 ? 1 : 0;
+					p9 = p[-step - 1] > 0 ? 1 : 0;
+					if ((p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9) > 1 && (p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9) < 7 && A1 == 1)
+					{
+						if ((p2 == 0 || p4 == 0 || p6 == 0) && (p4 == 0 || p6 == 0 || p8 == 0)) //p2*p4*p6=0 && p4*p6*p8==0
+						{
+							dst.at<uchar>(i, j) = 0; //满足删除条件，设置当前像素为0
+							ifEnd = true;
+						}
+					}
+				}
+			}
+		}
+
+		dst.copyTo(tmpimg);
+		img = tmpimg.data;
+		for (i = 1; i < height; i++)
+		{
+			img += step;
+			for (j = 1; j < width; j++)
+			{
+				A1 = 0;
+				uchar* p = img + j;
+				if (p[0] > 0)
+				{
+					if (p[-step] == 0 && p[-step + 1] > 0) //p2,p3 01模式
+					{
+						A1++;
+					}
+					if (p[-step + 1] == 0 && p[1] > 0) //p3,p4 01模式
+					{
+						A1++;
+					}
+					if (p[1] == 0 && p[step + 1] > 0) //p4,p5 01模式
+					{
+						A1++;
+					}
+					if (p[step + 1] == 0 && p[step] > 0) //p5,p6 01模式
+					{
+						A1++;
+					}
+					if (p[step] == 0 && p[step - 1] > 0) //p6,p7 01模式
+					{
+						A1++;
+					}
+					if (p[step - 1] == 0 && p[-1] > 0) //p7,p8 01模式
+					{
+						A1++;
+					}
+					if (p[-1] == 0 && p[-step - 1] > 0) //p8,p9 01模式
+					{
+						A1++;
+					}
+					if (p[-step - 1] == 0 && p[-step] > 0) //p9,p2 01模式
+					{
+						A1++;
+					}
+					p2 = p[-step] > 0 ? 1 : 0;
+					p3 = p[-step + 1] > 0 ? 1 : 0;
+					p4 = p[1] > 0 ? 1 : 0;
+					p5 = p[step + 1] > 0 ? 1 : 0;
+					p6 = p[step] > 0 ? 1 : 0;
+					p7 = p[step - 1] > 0 ? 1 : 0;
+					p8 = p[-1] > 0 ? 1 : 0;
+					p9 = p[-step - 1] > 0 ? 1 : 0;
+					if ((p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9) > 1 && (p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9) < 7 && A1 == 1)
+					{
+						if ((p2 == 0 || p4 == 0 || p8 == 0) && (p2 == 0 || p6 == 0 || p8 == 0)) //p2*p4*p8=0 && p2*p6*p8==0
+						{
+							dst.at<uchar>(i, j) = 0; //满足删除条件，设置当前像素为0
+							ifEnd = true;
+						}
+					}
+				}
+			}
+		}
+
+		//如果两个子迭代已经没有可以细化的像素了，则退出迭代
+		if (!ifEnd) break;
+	}
+
+}
+
+
+
+/* ---------------------------------- boter--------------------------------------------  */
+
+float Distance(float x1, float y1, float x2, float y2) {
+	float D;
+	D = sqrt((y1 - y2)*(y1 - y2) + (x1 - x2)*(x1 - x2));
+	return D;
+}
+
+
+float get_angle(float y, float x) {//   -90 to 270
+
+	float result = 0;
+	if (x > 0) result = atan(y / x);
+	else if (x == 0 && y > 0) result = 0.5*PI;
+	else if (x == 0 && y < 0) result = -0.5*PI;
+	else if (x < 0) result = PI + atan(y / x);
+
+	return result;
+}
+
+int go_to(float angle, float car_x, float car_y, float dest_x, float dest_y,float cri_dist, float cri_angle) {
+	float dest_angle;
+	int command;
+
+	//crit_angle = 0.4;      //20 degrees
+	//crit_dist = 20;
+
+	dest_angle = get_angle((dest_y - car_y), (dest_x - car_x));
+	if (((dest_angle - angle > cri_angle) && (dest_angle - angle <= PI)) || (dest_angle - angle <= -PI))
+		command = 1;
+
+
+	else if (((dest_angle - angle < -cri_angle) && (dest_angle - angle > -PI)) || (dest_angle - angle > PI))
+		command = 2;
+	else {
+		if (Distance(dest_x, dest_y, car_x, car_y) > cri_dist) {
+			command = 3;
+		}
+		else command = 4;
+	}
+
+	return command;
+}
+
+
+
+
+/***********************************************************************/
+//jun 9
+
+float constrain(float bottom, float ceiling, float x) {
+	float result;
+	if (x < bottom)
+		result = bottom;
+	else if (x > ceiling)
+		result = ceiling;
+	else result = x;
+	return result;
+
+}
+
+float cri_ang_def(float crit_dist, float dist) {
+	float result, ceiling = 30, bottom = 13, y_d, y_c_d;//y_d arc tan
+	y_d = -0.05*dist + 20;    //100,15 300,5
+
+	
+	y_c_d = 16.5947*exp(-0.0081756*(dist - crit_dist));   //c+75 12  c+50 14  c+25 18
+
+	result = constrain(bottom, ceiling, max(y_d, y_c_d));
+
+	result = result / 180 * PI;
+	return result;
+}
+
+
+float cri_dis_def(float xp, float yp, float x, float y, float xn, float yn) {
+	float a, b, c, angle_d, result, bottom = 15, ceiling = 30;
+	a = Distance(xp, yp, x, y);
+	b = Distance(x, y, xn, yn);
+	c = Distance(xp, yp, xn, yn);
+	angle_d = acos((a*a + b * b - c * c) / (2 * a*b))/PI*180;
+	result = 0.04*angle_d +18;
+	result = constrain(bottom, ceiling, result);
+	
+	return result;
+}
+
+
+
+</pre>
+        </div>
+
+
+
+    </section>
+
+
+    <footer class="probootstrap-footer">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="probootstrap-social"><a href="#"><i class="icon-twitter"></i></a> <a href="#"><i class="icon-facebook2"></i></a> <a href="#"><i class="icon-instagram2"></i></a><a href="#"><i class="icon-linkedin"></i></a></p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+
+    <script src="js/scripts.min.js"></script>
+    <script src="js/custom.js"></script>
+
+</body>
+</html>
